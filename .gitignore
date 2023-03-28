@@ -1,5 +1,14 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+/src/Box-challenge
+/src/components
+/src/data
+/src/Form-practice
+/src/images
+/src/Jokes
+/src/meme-gen
+/src/SideEffect
+
 # dependencies
 /node_modules
 /.pnp
