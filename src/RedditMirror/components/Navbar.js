@@ -27,18 +27,20 @@ export default function Navbar(props){
         <div className="r-homepage">
           <Link to="/">Search Reddit</Link>
         </div>
-        <form onSubmit={handleSubmit}>
-          <div className="r-search">
-            <i className="fa fa-search form-icon"></i>
-            <input
-              type="text"
-              placeholder="Search Reddit"
-              onChange={handleChange}
-              name="keyword"
-              value={keyword}
-            />
-          </div>
-        </form>
+        <div>
+          <form onSubmit={handleSubmit}>
+            <div className="r-search">
+              <i className="fa fa-search form-icon"></i>
+              <input
+                type="text"
+                placeholder="Search Reddit"
+                onChange={handleChange}
+                name="keyword"
+                value={keyword}
+              />
+            </div>
+          </form>
+        </div>
         <div></div>
       </div>
     );

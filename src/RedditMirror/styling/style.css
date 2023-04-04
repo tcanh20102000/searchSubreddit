@@ -76,6 +76,9 @@
     background: #FFFFFF;
 
 }
+.r-navbav > div{
+    flex: 1;
+}
 
 .r-search{
     position: relative;
@@ -83,12 +86,12 @@
 
 .form-icon{
     position: absolute;
-    left: 1.5em;
+    left: 1em;
     top: 1.1em;
 }
 
 .r-search > input{
-    margin: 0 0 0 0.5em;
+    //margin: 0 0 0 0.5em;
     max-width: 20em;
     width: 100%;
     border: 1px solid;
@@ -154,5 +157,17 @@
 .r-homepage > a{
     text-decoration: none;
     color: #409ade;
+}
+.r-img{
+    
+    width: 100%;
+    
+
+}
+.r-img > img{
+    width: 100%;
+    height: auto;
+    max-width: 80vw;
+    max-height: 88vh;
 }
 

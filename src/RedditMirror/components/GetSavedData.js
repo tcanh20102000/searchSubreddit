@@ -4,6 +4,8 @@ import axios from "axios";
 import Pagination from "./Pagination";
 import { useParams } from "react-router-dom";
 
+const TIMEOUT = 900;
+
 
 function keyWordToURL(input) {
   return `https://www.reddit.com/r/${input}.json`;
@@ -25,43 +27,34 @@ const ListOfPost = ({list}) =>{
 export default function GetSavedData(props) {
   const{subreddit} = useParams();
 
-  const [rdata, setRData] = React.useState([]);
+  const [rdata, setRData] = React.useState({data: [], search: true});
   
   const [currPage, setCurrPage] = React.useState(1);
   const [postPerPage, setPostPerPage] = React.useState(3);
   const [loading, setLoading] = React.useState(false);
   
-  
-  // React.useEffect(
-  //   function () {
-  //     fetch(url).then((res) => {
-  //       if (res.status !== 200) {
-  //         console.log("Request failed");
-  //         return;
-  //       }
-
-  //       res.json().then((data) => {
-  //         if (data != null) {
-  //           //setRData(data.data.children);
-  //           //console.log(data.data.children);
-  //         }
-  //       });
-  //     });
-  //   },
-  //   [subreddit]
-  // );
 
   React.useEffect(() => {
     let url = keyWordToURL(subreddit);
 
     const fetchPosts = async () => {
-      setLoading(true);
-      const res = await axios.get(url);
-      if (res != null) {
-        console.log("res.data", res.data.data.children);
-        setRData(res.data.data.children);
+      try{
+        setLoading(true);
+        const res = await axios.get(url, {timeout: TIMEOUT});
+        if (res != null) {
+          console.log("res.data", res.data.data.children);
+          setRData({ data: res.data.data.children, search: true });
+        }
+        setLoading(false);
       }
-      setLoading(false);
+      catch(err){
+        setLoading(false);
+        console.log(err);
+        setRData((prevData) => ({
+          ...prevData,
+          search: false,
+        }));
+      }
     };
 
     fetchPosts();
@@ -70,7 +63,7 @@ export default function GetSavedData(props) {
   //Get current posts
   const indexOfLastPost = currPage*postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
-  const currentPosts = rdata.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = rdata.data.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = (pageIndex) =>{
     setCurrPage(pageIndex);
@@ -85,26 +78,30 @@ export default function GetSavedData(props) {
   //     />
   //   )
   // })
+
   return (
     <>
       {loading ? (
         <h2>Loading...</h2>
-      ) : (
+      ) : (rdata.search) ? (
         <div className="r-content">
-          <ListOfPost list={currentPosts} />
+            <ListOfPost list={currentPosts} />
 
-          <div className="pagination-div">
+            <div className="pagination-div">
 
-            <Pagination
-              currentPage={currPage}
-              postsperPage={postPerPage}
-              totalPosts={rdata.length}
-              paginate={paginate}
-              setCurrPage={setCurrPage}
-            />
-          </div>
-        </div>
-      )}
+              <Pagination
+                currentPage={currPage}
+                postsperPage={postPerPage}
+                totalPosts={rdata.data.length}
+                paginate={paginate}
+                setCurrPage={setCurrPage}
+              />
+            </div>
+          </div>):(
+            <div>
+            Not found
+          </div>)
+        }
     </>
   );
 }
