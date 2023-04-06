@@ -23,7 +23,7 @@ export default function Navbar(props){
         navigate(`/r/${keyword}`);
     }
     return (
-      <div className="r-navbav">
+      <nav className="r-navbav">
         <div className="r-homepage">
           <Link to="/">Search Reddit</Link>
         </div>
@@ -37,12 +37,14 @@ export default function Navbar(props){
                 onChange={handleChange}
                 name="keyword"
                 value={keyword}
+                onFocus={(e) => e.target.select()}
+                id="searchbar"
               />
             </div>
           </form>
         </div>
         <div></div>
-      </div>
+      </nav>
     );
     
 }

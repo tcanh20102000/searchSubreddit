@@ -4,7 +4,7 @@ import axios from "axios";
 import Pagination from "./Pagination";
 import { useParams } from "react-router-dom";
 
-const TIMEOUT = 900;
+const TIMEOUT = 1000;
 
 
 function keyWordToURL(input) {
@@ -83,25 +83,31 @@ export default function GetSavedData(props) {
     <>
       {loading ? (
         <h2>Loading...</h2>
-      ) : (rdata.search) ? (
+      ) : rdata.search ? (
         <div className="r-content">
-            <ListOfPost list={currentPosts} />
+          <ListOfPost list={currentPosts} />
 
-            <div className="pagination-div">
-
-              <Pagination
-                currentPage={currPage}
-                postsperPage={postPerPage}
-                totalPosts={rdata.data.length}
-                paginate={paginate}
-                setCurrPage={setCurrPage}
-              />
-            </div>
-          </div>):(
-            <div>
-            Not found
-          </div>)
-        }
+          <div className="pagination-div">
+            <Pagination
+              currentPage={currPage}
+              postsperPage={postPerPage}
+              totalPosts={rdata.data.length}
+              paginate={paginate}
+              setCurrPage={setCurrPage}
+            />
+          </div>
+        </div>
+      ) : (
+        <div className="r-whole-post">
+          <div className="reddit-post" style={{ textAlign: "center" }}>
+            <h3>It seem the subreddit "{subreddit}" does not exist.</h3>
+            <p>
+              Double-check your spelling or try other keywords in the{" "}
+              <a href="#searchbar">searchbar</a>
+            </p>
+          </div>
+        </div>
+      )}
     </>
   );
 }

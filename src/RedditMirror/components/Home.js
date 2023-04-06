@@ -1,5 +1,5 @@
 import React from "react";
-import storedImage from '../data/storedImage.js';
+import storedImage from '../data/images/images.js';
 
 function randomNumber(min, max){
     return Math.floor(Math.random() * (max - min) + min);
@@ -23,8 +23,8 @@ export default function Home() {
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundImage: `url(${currImg.randomImg})`,
-        width: "99vw",
-        height: "100vh",
+        width: "100vw",
+        height: "89vh",
       }}
     ></div>
   );

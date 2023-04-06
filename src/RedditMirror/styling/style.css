@@ -74,6 +74,8 @@
     justify-content: space-between;
     padding: 0.5em 0 0.5em 0;
     background: #FFFFFF;
+    position: sticky;
+    top: 0;
 
 }
 .r-navbav > div{
@@ -158,11 +160,8 @@
     text-decoration: none;
     color: #409ade;
 }
-.r-img{
-    
+.r-img{  
     width: 100%;
-    
-
 }
 .r-img > img{
     width: 100%;
