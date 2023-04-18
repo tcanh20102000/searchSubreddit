@@ -1,8 +1,7 @@
 import Austria from  "./Austria.png";
 import Engetsu from "./EngetsuIslandJapan.jpg";
 import Junction from "./JunctionSiegenGermany.jpg";
-import OatField from './OatField.jpg'
-import OutOfStock from './OutOfStock.jpg'
+import OatField from './OatField.jpg';
 import RailLine from "./Railway_lineSunset.png";
 
 // const images = {
@@ -44,12 +43,6 @@ const storedImage = {
       },
       {
         id: 5,
-        name: "Out of stock",
-        img: OutOfStock,
-        landscape: true,
-      },
-      {
-        id: 6,
         name: "Rail line",
         img: RailLine,
         landscape: true,

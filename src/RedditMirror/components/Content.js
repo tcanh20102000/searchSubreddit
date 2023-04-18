@@ -11,19 +11,14 @@ export default function Content() {
   console.log('Sub:', subreddit)
   return (
     <Router>
-      <div className="r-page">
-        <Navbar subreddit={subreddit} onSearchSubmit={setSubreddit} />
-        <div>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route
-              path="/r/:subreddit"
-              element={<GetSavedData />}
-            />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </div>
-      </div>
+      <Navbar subreddit={subreddit} onSearchSubmit={setSubreddit} />
+      <>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/r/:subreddit" element={<GetSavedData />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </>     
     </Router>
   );
 }

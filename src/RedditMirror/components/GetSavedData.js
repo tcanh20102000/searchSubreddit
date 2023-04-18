@@ -3,12 +3,17 @@ import Post from "./Post";
 import axios from "axios";
 import Pagination from "./Pagination";
 import { useParams } from "react-router-dom";
+import ItemsPerPage from "./ItemsPerPage";
 
-const TIMEOUT = 1000;
+const TIMEOUT = 5000
+const FixedPostsPerPage = [5, 10, 20];
 
+// function keyWordToURL(input) {
+//   return `https://www.reddit.com/r/${input}.json`;
+// }
 
-function keyWordToURL(input) {
-  return `https://www.reddit.com/r/${input}.json`;
+function keyWordToQuery(input){
+  return `https://www.reddit.com/search.json?q=${input}&limit=100&type=link&sr_detail=1`;
 }
 
 const ListOfPost = ({list}) =>{
@@ -24,30 +29,31 @@ const ListOfPost = ({list}) =>{
     </>);
 }
 
-export default function GetSavedData(props) {
-  const{subreddit} = useParams();
+export default function GetSavedData() {
+  //get value of subreddit in url
+  const { subreddit } = useParams();
+  //get data 
+  const [rdata, setRData] = React.useState({ data: [], search: true });
 
-  const [rdata, setRData] = React.useState({data: [], search: true});
-  
   const [currPage, setCurrPage] = React.useState(1);
-  const [postPerPage, setPostPerPage] = React.useState(3);
-  const [loading, setLoading] = React.useState(false);
-  
+  const [postPerPage, setPostPerPage] = React.useState(FixedPostsPerPage[0]); //set numbers of posts per page
+
+  //put loading screen when waiting for response
+  const [loading, setLoading] = React.useState(false); 
 
   React.useEffect(() => {
-    let url = keyWordToURL(subreddit);
+    let url = keyWordToQuery(subreddit);
 
     const fetchPosts = async () => {
-      try{
+      try {
         setLoading(true);
-        const res = await axios.get(url, {timeout: TIMEOUT});
+        const res = await axios.get(url, { timeout: TIMEOUT });
         if (res != null) {
           console.log("res.data", res.data.data.children);
           setRData({ data: res.data.data.children, search: true });
         }
         setLoading(false);
-      }
-      catch(err){
+      } catch (err) {
         setLoading(false);
         console.log(err);
         setRData((prevData) => ({
@@ -60,24 +66,16 @@ export default function GetSavedData(props) {
     fetchPosts();
   }, [subreddit]);
 
-  //Get current posts
-  const indexOfLastPost = currPage*postPerPage;
+  //Get the corresponding posts for the current page
+  const indexOfLastPost = currPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
   const currentPosts = rdata.data.slice(indexOfFirstPost, indexOfLastPost);
 
-  const paginate = (pageIndex) =>{
+  const paginate = (pageIndex) => {
     setCurrPage(pageIndex);
     //console.log('Click:', currPage);
-  }
+  };
 
-  // const listOfPost = currentPosts.map((post, index) =>{
-  //   return (
-  //     <Post
-  //       key={index}
-  //       {...post.data}
-  //     />
-  //   )
-  // })
 
   return (
     <>
@@ -85,6 +83,12 @@ export default function GetSavedData(props) {
         <h2>Loading...</h2>
       ) : rdata.search ? (
         <div className="r-content">
+          <ItemsPerPage
+            setPostPerPage={setPostPerPage}
+            fixedPostsPerPage={FixedPostsPerPage}
+            postPerPage={postPerPage}
+          />
+
           <ListOfPost list={currentPosts} />
 
           <div className="pagination-div">

@@ -1,15 +1,14 @@
 
 import React from "react";
-import Content from './RedditMirror/components/Content.js';
-
-
+import Content from './RedditMirror/components/Content.js'
+import "./RedditMirror/styling/style.css";
 
 
 export default function App(){      
     return (
-      <> 
+      <div className="r-page"> 
         <Content />
-      </>
+      </div>
     );
 }
 

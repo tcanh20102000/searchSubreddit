@@ -1,4 +1,3 @@
-
 .r-page{
     background: #dae0e6;
     width: 100%;
@@ -6,8 +5,8 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-
 }
+
 .r-content{
     display:flex;
     flex-direction:column;
@@ -18,6 +17,7 @@
     flex-direction: row;
     margin: 0.5em 1em 0 1em;
     border: 1px solid;
+    min-height: 7em;
 }
 .r-score{
     background: #f8f9fa;
@@ -40,9 +40,23 @@
     background: #FFFFFF;
     padding: 0 0 1em 1em;
 }
+.r-meta{
+    margin-top:0.5em;
+
+}
+.r-meta > a > span{
+    font-size: small;
+}
+.r-meta > a {
+    text-decoration: none;
+    color: black;
+}
+.r-meta > a:hover {
+    text-decoration: underline;
+}
 
 .r-title{
-    
+   margin-top: 0em; 
 }
 .r-title1{
     text-decoration: none;
@@ -53,7 +67,7 @@
     color: #409ade;
 }
 .r-title > a > h3{
-    margin: 0.5em 0 0.5em 0;
+    margin: 0em 0 0.5em 0;
 }
 .r-title > a > p{
     margin: 0.25em 0 0.5em 0;
@@ -76,7 +90,6 @@
     background: #FFFFFF;
     position: sticky;
     top: 0;
-
 }
 .r-navbav > div{
     flex: 1;
@@ -91,16 +104,20 @@
     left: 1em;
     top: 1.1em;
 }
+.r-searchbar{
+    display: flex;
+    justify-content: center;
+}
 
 .r-search > input{
-    //margin: 0 0 0 0.5em;
-    max-width: 20em;
+    max-width: 15em;
     width: 100%;
     border: 1px solid;
-    border-radius: 20px;
+    border-radius: 50px;
     padding: 1em 2.5em;
     font-size: 1em;
     background-color: #f8f4fc;
+    margin: 0 2em 0 0;
 }
 .r-search > input[type="text"]:focus{
     outline: none;
@@ -162,11 +179,14 @@
 }
 .r-img{  
     width: 100%;
+    height: 100%;
+    border: 4px soild black;
 }
-.r-img > img{
+
+/* .r-img > img{
     width: 100%;
     height: auto;
     max-width: 80vw;
     max-height: 88vh;
-}
+} */
 

@@ -7,7 +7,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar(props){
     const { subreddit, onSearchSubmit } = props;
-    const navigate = useNavigate();
+    const navigate = useNavigate(); //use this to navigate to other pages
 
     const [keyword, setKeyword]  = React.useState('')
 
@@ -28,7 +28,7 @@ export default function Navbar(props){
           <Link to="/">Search Reddit</Link>
         </div>
         <div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="r-searchbar">
             <div className="r-search">
               <i className="fa fa-search form-icon"></i>
               <input
@@ -43,7 +43,7 @@ export default function Navbar(props){
             </div>
           </form>
         </div>
-        <div></div>
+        <div>{/*This div is for flexbox to center the searchbar*/}</div>
       </nav>
     );
     

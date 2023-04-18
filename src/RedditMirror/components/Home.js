@@ -7,6 +7,7 @@ function randomNumber(min, max){
 
 
 export default function Home() {
+  //Get images from local files
   const [allImages, setAllImages] = React.useState(storedImage.data.images);
   console.log("data, ", allImages);
 
@@ -23,7 +24,7 @@ export default function Home() {
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundImage: `url(${currImg.randomImg})`,
-        width: "100vw",
+        width: "100%",
         height: "89vh",
       }}
     ></div>
