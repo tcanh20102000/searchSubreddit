@@ -6,7 +6,11 @@ The following section demonstrates some of the key visual of this project.
 
 ## 1.1 Home page.
 
-![This is how the Home page looks like](src/WebDemo/Home-page.jpeg)
+This is how the Home page would look like.
+
+![Should be an image here](src/WebDemo/Home-page.jpeg)
+
+The background image below the navbar will change randomly to one of the images in the [images](searchSubreddit/src/RedditMirror/data/images/) folder. 
 
 # Getting Started with Create React App
 
