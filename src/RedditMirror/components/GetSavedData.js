@@ -13,7 +13,7 @@ const FixedPostsPerPage = [5, 10, 20];
 // }
 
 function keyWordToQuery(input){
-  return `https://www.reddit.com/search.json?q=${input}&limit=100&type=link&sr_detail=1`;
+  return `https://www.reddit.com/search.json?q=${input}&limit=100&type=link&sr_detail=1&raw_json=1`;
 }
 
 const ListOfPost = ({list}) =>{

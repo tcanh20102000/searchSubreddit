@@ -27,10 +27,11 @@ function displayUpvote(score){
 
 
 export default function Post(props){
-    const {title, thumbnail, permalink, url, selftext, subreddit} = props
+    const {title, thumbnail, permalink, url, selftext, subreddit, author} = props
     const r_post_text = selftext ? selftext.replaceAll('\n', '<br>'): '';
     
     let r_score_text = displayUpvote(props.score);
+    console.log(title, props);
     
     const r_srlink = `https://www.reddit.com/r/${subreddit}`;
     const r_permalink = `https://www.reddit.com${permalink}`;
@@ -44,7 +45,7 @@ export default function Post(props){
           {subreddit && (
             <div className="r-meta">
               <a href={`${r_srlink}`}>
-                <span>{"r/" + subreddit}</span>
+                <span>{`r/${subreddit} \u00B7 Posted by u/${author}`}</span>
               </a>
             </div>
           )}
@@ -61,7 +62,7 @@ export default function Post(props){
             style={{
               backgroundColor: `${props.link_flair_background_color}`,
               color: `${props.link_flair_text_color}`,
-              fontWeight:'bold',
+              fontWeight: "bold",
             }}
           >
             <span>{props.link_flair_text}</span>

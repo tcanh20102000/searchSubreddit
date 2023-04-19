@@ -10,14 +10,17 @@
 .r-content{
     display:flex;
     flex-direction:column;
+    align-items: center;
     flex: 1;
 }
+
 .r-whole-post{
     display:flex;
     flex-direction: row;
     margin: 0.5em 1em 0 1em;
     border: 1px solid;
-    min-height: 7em;
+    height: 12em;
+    width: 90vw;
 }
 .r-score{
     background: #f8f9fa;
@@ -61,6 +64,7 @@
 .r-title1{
     text-decoration: none;
     color: black;
+    
 }
 .r-title1:hover{
     text-decoration: none;
