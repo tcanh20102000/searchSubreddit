@@ -1,3 +1,13 @@
+# 1. Introduction
+
+This project is a UI version of [Reddit](https://www.reddit.com) search feature.
+
+The following section demonstrates some of the key visual of this project.
+
+## 1.1 Home page.
+
+![This is how the Home page looks like](src/WebDemo/Home-page.jpeg)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
