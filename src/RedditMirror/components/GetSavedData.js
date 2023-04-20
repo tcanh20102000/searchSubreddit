@@ -2,6 +2,7 @@ import React from "react";
 import Post from "./Post";
 import axios from "axios";
 import Pagination from "./Pagination";
+import ToTopButton from "./ToTopButton/ToTopButton";
 import { useParams } from "react-router-dom";
 import ItemsPerPage from "./ItemsPerPage";
 
@@ -76,42 +77,119 @@ export default function GetSavedData() {
     //console.log('Click:', currPage);
   };
 
-
-  return (
-    <>
-      {loading ? (
-        <h2>Loading...</h2>
-      ) : rdata.search ? (
-        <div className="r-content">
-          <ItemsPerPage
-            setPostPerPage={setPostPerPage}
-            fixedPostsPerPage={FixedPostsPerPage}
-            postPerPage={postPerPage}
-          />
-
-          <ListOfPost list={currentPosts} />
-
-          <div className="pagination-div">
-            <Pagination
-              currentPage={currPage}
-              postsperPage={postPerPage}
-              totalPosts={rdata.data.length}
-              paginate={paginate}
-              setCurrPage={setCurrPage}
-            />
-          </div>
-        </div>
-      ) : (
+  const noResult = (
+      <>
         <div className="r-whole-post">
           <div className="reddit-post" style={{ textAlign: "center" }}>
-            <h3>It seem the subreddit "{subreddit}" does not exist.</h3>
-            <p>
+            <h3>It seem that the search "{subreddit}" return no result.</h3>
+            <p style={{ color: "#8a8a8a" }}>
               Double-check your spelling or try other keywords in the{" "}
               <a href="#searchbar">searchbar</a>
             </p>
           </div>
         </div>
-      )}
+      </>
+  );
+  
+  
+  const timeOut = (
+      <>
+        <div className="r-whole-post">
+          <div className="reddit-post" style={{ textAlign: "center" }}>
+            <h3>The request of searching "{subreddit}" has been timed out.</h3>
+            <p style={{ color: "#8a8a8a" }}>
+              Please try again after a few minutes
+            </p>
+          </div>
+        </div>
+      </>
+  );
+
+  const yesResult = (
+    <>
+      <div className="r-content">
+        <ItemsPerPage
+          setPostPerPage={setPostPerPage}
+          fixedPostsPerPage={FixedPostsPerPage}
+          postPerPage={postPerPage}
+        />
+
+        <ListOfPost list={currentPosts} />
+
+        <div className="pagination-div">
+          <Pagination
+            currentPage={currPage}
+            postsperPage={postPerPage}
+            totalPosts={rdata.data.length}
+            paginate={paginate}
+            setCurrPage={setCurrPage}
+          />
+        </div>
+
+        <ToTopButton />
+      </div>
     </>
   );
+  
+
+  function ShowSearchResult(){
+    let res = '';
+    if(!rdata.search){
+      res = timeOut;
+    }
+    if(rdata.search && !rdata.data){
+      res = noResult;
+    }
+    else{
+      res = yesResult;
+    }
+    
+    console.log('SHow', res);
+    return res;
+  }
+
+  return(
+  <>
+    <ShowSearchResult/>
+  </>)
+  
 }
+
+
+// return (
+//   <>
+//     {loading ? (
+//       <h2>Loading...</h2>
+//     ) : rdata.search & rdata.data ? (
+//       <div className="r-content">
+//         <ItemsPerPage
+//           setPostPerPage={setPostPerPage}
+//           fixedPostsPerPage={FixedPostsPerPage}
+//           postPerPage={postPerPage}
+//         />
+
+//         <ListOfPost list={currentPosts} />
+
+//         <div className="pagination-div">
+//           <Pagination
+//             currentPage={currPage}
+//             postsperPage={postPerPage}
+//             totalPosts={rdata.data.length}
+//             paginate={paginate}
+//             setCurrPage={setCurrPage}
+//           />
+//         </div>
+//       </div>
+//     ) : (
+//       <div className="r-whole-post">
+//         <div className="reddit-post" style={{ textAlign: "center" }}>
+//           <h3>It seem that the search "{subreddit}" return no result.</h3>
+//           <p style={{ color: "#8a8a8a" }}>
+//             Double-check your spelling or try other keywords in the{" "}
+//             <a href="#searchbar">searchbar</a>
+//           </p>
+//         </div>
+//       </div>
+//     )}
+//   </>
+// );

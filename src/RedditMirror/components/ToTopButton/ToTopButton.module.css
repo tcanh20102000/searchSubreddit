@@ -1,0 +1,22 @@
+.square{
+    background-color: blue;
+    color: white;
+    width: 2em;
+    height: 2em;
+    position: fixed;
+    bottom: 2em;
+    right: 1em;
+    display: flex;
+    justify-content: center;
+    border-radius: 4px;
+}
+.square:hover{
+    transition-delay: 0.3s;
+    transition-property: background-color;
+    background-color: red;
+}
+
+.arrow{
+    color: white;
+    margin: 0.25em 0;
+}

@@ -63,6 +63,7 @@ export default function Post(props){
               backgroundColor: `${props.link_flair_background_color}`,
               color: `${props.link_flair_text_color}`,
               fontWeight: "bold",
+              fontSize: '0.75em',
             }}
           >
             <span>{props.link_flair_text}</span>

@@ -17,15 +17,16 @@
 .r-whole-post{
     display:flex;
     flex-direction: row;
-    margin: 0.5em 1em 0 1em;
+    margin: 1em auto;
     border: 1px solid;
-    height: 12em;
+    min-height: 10em;
     width: 90vw;
+    overflow: hidden;
 }
 .r-score{
     background: #f8f9fa;
     font-weight: bold;
-    width: 3em;
+    min-width: 3em;
     text-align: center;   
     font-size: 0.75em;   
 }
